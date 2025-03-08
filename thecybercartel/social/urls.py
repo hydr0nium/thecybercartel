@@ -20,7 +20,9 @@ from social import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.login, name="index"),
+    path('', views.index, name="index"),
     path('login', views.login, name="login"),
-    path('profile', views.profile, name="profile")
+    path('profile', views.profile, name="profile"),
+    path('shop', views.shop, name="shop"),
+    path('settings', views.settings, name="settings")
 ]
