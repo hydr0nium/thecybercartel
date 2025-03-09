@@ -11,6 +11,8 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'social.settings')
+from social.database_manager import init
 
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'social.settings')
+init()
 application = get_wsgi_application()
