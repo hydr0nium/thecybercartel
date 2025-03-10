@@ -14,7 +14,7 @@ class LoginView(TemplateView):
 
   def get(self, request: HttpRequest, *args, **kwargs):
     if "authenticated" in request.session and request.session['authenticated']:
-      return HttpResponseRedirect("index")
+      return HttpResponseRedirect("/")
     return render(request, "index.html", {})
 
   def post(self, request: HttpRequest, *args, **kwargs):
@@ -24,7 +24,7 @@ class RegisterView(TemplateView):
 
   def get(self, request: HttpRequest, *args, **kwargs):
     if "authenticated" in request.session and request.session['authenticated']:
-      return HttpResponseRedirect("index")
+      return HttpResponseRedirect("/")
     return render(request, "register.html", {})
 
 
