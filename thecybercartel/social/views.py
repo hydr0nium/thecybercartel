@@ -8,30 +8,29 @@ from django.template import Template
 
 
 def login(request):
-  return HttpResponse("This is the login page")
+  return HttpResponseRedirect("testlogin")
 
 
 def profile(request):
   if "authenticated" not in request.session or not request.session['authenticated']:
     return HttpResponseRedirect("login")
-
-
-  return HttpResponse("This is the profile page!")
+  return render(request, "profile.html", {})
 
 def shop(request):
   if "authenticated" not in request.session or not request.session['authenticated']:
     return HttpResponseRedirect("login")
-  return HttpResponse("This is the shop page!")
+  return render(request, "shop.html", {})
 
 def settings(request):
   if "authenticated" not in request.session or not request.session['authenticated']:
     return HttpResponseRedirect("login")
-  return HttpResponse("This is the settings page!")
+  return render(request, "settings.html", {})
 
 def index(request):
   if "authenticated" not in request.session or not request.session['authenticated']:
     return HttpResponseRedirect("login")
+  return render(request, "index.html", {})
 
-def test(request):
+def testlogin(request):
   request.session["authenticated"] = True
   return HttpResponse("you are logged in now!")

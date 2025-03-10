@@ -25,5 +25,5 @@ urlpatterns = [
     path('profile', views.profile, name="profile"),
     path('shop', views.shop, name="shop"),
     path('settings', views.settings, name="settings"),
-    path("test", views.test, name="test")
+    path("test", views.testlogin, name="test")
 ]
