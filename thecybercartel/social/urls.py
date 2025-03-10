@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from social import views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name="index"),
@@ -25,5 +26,6 @@ urlpatterns = [
     path('profile', views.profile, name="profile"),
     path('shop', views.shop, name="shop"),
     path('settings', views.settings, name="settings"),
-    path("testlogin", views.testlogin, name="testlogin")
+    path("register", views.RegisterView.as_view(), name="register")
+    path("logout", views.logout, name="logout")
 ]
