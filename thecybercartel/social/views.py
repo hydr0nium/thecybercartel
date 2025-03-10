@@ -15,7 +15,7 @@ class LoginView(TemplateView):
   def get(self, request: HttpRequest, *args, **kwargs):
     if "authenticated" in request.session and request.session['authenticated']:
       return HttpResponseRedirect("/")
-    return render(request, "index.html", {})
+    return render(request, "login.html", {})
 
   def post(self, request: HttpRequest, *args, **kwargs):
     pass
