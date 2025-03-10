@@ -40,11 +40,6 @@ def init():
 
 def create_user(username, password):
     conn = sqlite3.connect("thecybercartel.db")
-    stmt = "SELECT * FROM users WHERE username = (?)"
-    cursor = conn.cursor()
-    cursor.execute(stmt, (username,))
-    result = cursor.fetchall()
-    print(result)
     
     stmt = "SELECT COUNT(*) FROM users WHERE username = (?)"
     cursor = conn.cursor()
@@ -55,11 +50,26 @@ def create_user(username, password):
     if row_count != 0:
         return False
 
-    salt = secrets.token_hex(8)
-    hash = hashlib.sha256(bytes(salt + password, "utf-8"))
-    hashed_password = salt + "." + hash.hexdigest()
+    hash = hashlib.sha256(bytes(password, "utf-8"))
+    hashed_password = hash.hexdigest()
     stmt = "INSERT INTO users (username, password) VALUES (?,?)"
     cursor = conn.cursor()
     cursor.execute(stmt, (username, hashed_password))
     conn.commit()
+    return True
+
+def login_user(username, password):
+    conn = sqlite3.connect("thecybercartel.db")
+
+    hash = hashlib.sha256(bytes(password, "utf-8"))
+    hashed_password = hash.hexdigest()
+    
+    stmt = "SELECT COUNT(*) FROM users WHERE username = '" + username + "' AND " + "password = '" + hashed_password + "';" 
+    cursor = conn.cursor()
+    cursor.execute(stmt)
+    result = cursor.fetchone()
+    print(result)
+    row_count = result[0]
+    if row_count == 0:
+        return False
     return True
