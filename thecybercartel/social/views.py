@@ -7,6 +7,8 @@ from django.views.generic import TemplateView
 from django.template import Context
 
 
+def logout(request):
+  pass
 
 class LoginView(TemplateView):
 
